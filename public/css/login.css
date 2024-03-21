@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to right bottom,rgba(41, 36, 36, 0.4),rgba(115, 113, 112, 0.7)),url("img/lgnbg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+
+.wrapper{
+    width:27rem;
+    height:34rem;
+    margin: 8rem auto;
+    border-style: none;
+    /* background-color: white; */
+    background-image: linear-gradient(to right bottom,rgba(239, 245, 242, 0.4),rgba(81, 83, 83, 0.7));
+  box-shadow: #241f1f 10px -5px 20px  1px inset;
+    
+}
+h1{
+    padding: 1.5rem 0;
+    font-size: 2.3rem;
+    background-image:linear-gradient(to right,rgb(30, 36, 34),rgb(4, 76, 51));
+		-webkit-background-clip:text;
+		color:transparent;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.form{
+    text-align: center;
+}
+
+.key{
+    font-size: 1.3rem;
+    margin: auto 3rem;
+    /* text-align: center; */
+}
+
+.value{
+    margin: 1.2rem 3rem;
+    font-size: 1.3rem;
+    border:none;
+    border-bottom: 2px solid black;
+    padding: 0.4rem;
+}
+
+.pass{
+    margin-left: 0rem;
+}
+
+.btn{
+    background-color: #074d3c;
+    border: 3px solid #aef1d8;
+    box-sizing: border-box;
+    color: #f4f7f6;
+    cursor: pointer;
+    height: 2rem;
+    margin: 0 10rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0.1rem 1.5rem;
+    text-align: center;
+    transition: all 1s;
+}
+
+
+.btn:hover {
+    background-color: #f2f7f5;
+    color: rgb(11, 89, 57);
+    transform: scale(1.125);
+    
+  }
+  
+  .btn:active {
+    transform: scale(1.025);
+  }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Data</title>
+
+    <link rel="stylesheet" href="css/display.css" />
+  </head>
+  <body>
+    <h1>Student Data</h1>
+
+    <table>
+      <thead>
+        <th>S. NO.</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Marks</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <% data.forEach((element,index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= element.name %></td>
+          <td><%= element.age %></td>
+          <td><%= element.marks %></td>
+          <td>
+            <a href="http://localhost:3000/getData/<%= element._id %>">View</a>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

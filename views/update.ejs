@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update</title>
+    <!-- <link rel="stylesheet" href="css/update.css" /> -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        /* background-image: linear-gradient(
+            to right bottom,
+            rgba(41, 36, 36, 0.4),
+            rgba(19, 18, 18, 0.7)
+          ),
+          url("img/newbg.jpeg"); */
+          
+
+          background-image: linear-gradient(to right bottom,rgba(18, 53, 36, 0.4),rgba(11, 48, 36, 0.7));
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;
+      }
+
+      .wrapper {
+        margin: 0 28rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+        /* margin-top:12rem; */
+        padding-top: 3rem;
+        background-image: linear-gradient(
+          to right,
+          rgb(140, 242, 210),
+          rgb(44, 237, 160)
+        );
+        -webkit-background-clip: text;
+        color: transparent;
+        text-align: center;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+
+      .form {
+        text-align: center;
+      }
+
+      .key {
+        font-size: 1.7rem;
+        margin: 2rem;
+        color: rgb(18, 17, 17);
+      }
+
+      .value {
+        margin: 1rem;
+        font-size: 1rem;
+        border: none;
+        border-bottom: 2px solid rgb(12, 12, 12);
+        padding: 0.4rem;
+      }
+
+      .age {
+        margin-left: 2.8rem;
+      }
+      .btn {
+        background-color: #074d3c;
+        border: 3px solid #aef1d8;
+        box-sizing: border-box;
+        color: #f4f7f6;
+        cursor: pointer;
+        height: 2rem;
+        margin: 0 13rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+        padding: 0.1rem 1.5rem;
+        text-align: center;
+        transition: all 1s;
+      }
+
+      .btn:hover {
+        box-shadow: #377a66 1px 2px 2px 4px inset;
+        background-color: #f4e7e9;
+        color: black;
+        transform: scale(1.125);
+      }
+
+      .btn:active {
+        transform: scale(1.025);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Update the data</h1>
+
+    <div class="wrapper">
+      <form id="updateForm">
+        <label class="key">Enter New Name: </label>
+        <input type="text" name="name" class="value" />
+
+        <br />
+        <br />
+
+        <label class="key">Enter New Age: </label>
+        <input type="text" name="age" class="value age" />
+
+        <br />
+        <br />
+
+        <label class="key">Enter New Marks: </label>
+        <input type="text" name="marks" class="value" />
+
+        <br />
+        <br />
+
+        <button type="submit" class="btn">Update</button>
+      </form>
+    </div>
+
+    <script>
+      const fr = document.querySelector("#updateForm");
+
+      const url = new URL(window.location.href);
+      const pathname = url.pathname;
+      const pathParts = pathname.split("/");
+      const id = pathParts[pathParts.length - 1];
+
+      fr.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(fr);
+        const name = formData.get("name");
+        const age = formData.get("age");
+        const marks = formData.get("marks");
+
+        try {
+          const response = await fetch(`/api/v1/update/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, age, marks }),
+          });
+          alert("Data Updated Successfully");
+          window.location.href = "http://localhost:3000/getData";
+        } catch (err) {
+          console.log(err.message);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/unique.css"/> -->
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to right bottom,rgba(26, 29, 28, 0.4),rgba(18, 19, 19, 0.7),rgba(34, 55, 55, 0.7)),url("img/createbg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.wrapper{
+    margin: 0 28rem;
+}
+
+h1{
+    font-size: 3rem;
+    /* margin-top:12rem; */
+    padding-top: 3rem;
+    background-image:linear-gradient(to right,rgb(25, 69, 56),rgb(3, 108, 66),rgb(38, 70, 57));
+		-webkit-background-clip:text;
+		color:transparent;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.form{
+    text-align: center;
+}
+
+.key{
+    font-size: 2rem;
+    margin: 1rem;
+    color: rgb(227, 240, 237)
+}
+
+.value{
+    /* margin: 1rem; */
+    font-size: 2rem;
+    padding: 0.4rem;
+    color: rgb(32, 35, 34);
+}
+
+.age{
+    margin-left: 2.8rem;
+}
+.btn{
+    background-color: #074d3c;
+    border: 2px solid #aef1d8;
+    box-sizing: border-box;
+    color: #f4f7f6;
+    cursor: pointer;
+    height: 2rem;
+    margin: 2rem 5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.1rem 1rem;
+    text-align: center;
+    transition: all 1s;
+}
+
+.btn:hover {
+    box-shadow: #377a66 1px 1px 2px 1px inset;
+    background-color: #f4e7e9;
+    color: black;
+    transform: scale(1.125);
+  }
+  
+  .btn:active {
+    transform: scale(1.025);
+  }
+
+  .container-btn{
+    display: flex;
+    direction: row;
+  }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Student Information</h1>
+
+        <div class="content">
+            <% data.forEach(element=>{ %>
+                <span class="key">Name: <span class="value"><%=element.name %></span></span>
+                <span class="key">Age: <span class="value"><%=element.age %></span></span>
+                <span class="key">Marks: <span class="value"><%=element.marks %></span></span>
+            <% }) %>
+        </div>
+
+        <div class="container-btn">
+            <button id="updateBtn" class="btn" type="submit">Update Button</button>
+            <button id="deleteBtn" class="btn" type="submit">Delete Button</button>
+        </div>
+    </div>
+
+
+    <script>
+        const deleteBtn=document.querySelector("#deleteBtn");
+        const updateBtn=document.querySelector("#updateBtn");
+
+        const url=new URL(window.location.href);
+        const pathname=url.pathname;
+        const pathParts=pathname.split("/");
+        const id=pathParts[pathParts.length-1];
+
+        deleteBtn.addEventListener("click",async()=>{
+            try{
+                const response=await fetch(`/api/v1/delete/${id}`,{
+                    method:"DELETE",
+                });
+                alert("Data Deleted Successfully");
+                window.location.href="http://localhost:3000/getData";
+            }catch(err)
+            {
+                console.log(err.message);
+            }
+        });
+
+        updateBtn.addEventListener("click",(event)=>{
+            event.preventDefault();
+            window.location.href=`http://localhost:3000/update/${id}`;
+        });
+    </script>
+</body>
+</html>
